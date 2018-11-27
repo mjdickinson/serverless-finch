@@ -17,7 +17,6 @@ class Client {
   constructor(serverless, cliOptions) {
     this.error = serverless.classes.Error;
     this.serverless = serverless;
-    this.options = serverless.service.custom.client;
     this.cliOptions = cliOptions || {};
     this.aws = this.serverless.getProvider('aws');
 
@@ -52,6 +51,7 @@ class Client {
   }
 
   _validateConfig() {
+    this.options = this.serverless.service.custom.client;
     try {
       validateClient(this.serverless, this.options);
     } catch (e) {
